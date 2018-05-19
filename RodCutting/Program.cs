@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace RodCutting
 {
@@ -10,12 +11,16 @@ namespace RodCutting
     {
         static void Main(string[] args)
         {
+            Stopwatch Timer = new Stopwatch();
+            Timer.Start();
             int[] profit = new int[] { 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
             //int result = CutRod(profit, profit.Length);
             //int result = MemoizedCutRod(profit, profit.Length);
             int result = BottomUpCutRod(profit, profit.Length);
 
             Console.WriteLine("Optimal Solution is:{0}", result);
+            Timer.Stop();
+            Console.WriteLine("Time Taken :", +Timer.Elasped);
         }
 
         static int CutRod(int[] profit, int n)
