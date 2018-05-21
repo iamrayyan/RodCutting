@@ -5,26 +5,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
 
-namespace RodCutting
+namespace rayyanWork123
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Stopwatch Timer = new Stopwatch();
-            Timer.Start();
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             int[] profit = new int[] { 1, 5, 8, 9, 10, 17, 17, 20, 24, 30 };
             //int result = CutRod(profit, profit.Length);
             //int result = MemoizedCutRod(profit, profit.Length);
             int result = BottomUpCutRod(profit, profit.Length);
 
             Console.WriteLine("Optimal Solution is:{0}", result);
-            Timer.Stop();
-            Console.WriteLine("Time Taken :", +Timer.Elasped);
+            watch.Stop();
+            var tanuMs = watch.ElapsedMilliseconds;
+            Console.WriteLine("Time taken: {0}ms", tanuMs);
+            Console.ReadLine();
         }
 
         static int CutRod(int[] profit, int n)
         {
+
             if (n == 0) // first element is 0
                 return 0;
 
@@ -76,7 +78,7 @@ namespace RodCutting
 
         static int BottomUpCutRod(int[] profit, int n)
         {
-            int[] r = new int[n + 1]; 
+            int[] r = new int[n + 1];
             r[0] = 0;
 
             for (int j = 1; j <= n; j++)
@@ -84,7 +86,7 @@ namespace RodCutting
                 int q = int.MinValue;
                 for (int i = 1; i <= j; i++)
                 {
-                    q = Math.Max(q, profit[i-1] + r[j - i]);
+                    q = Math.Max(q, profit[i - 1] + r[j - i]);
                 }
                 r[j] = q;
             }
